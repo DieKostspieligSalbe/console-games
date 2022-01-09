@@ -26,7 +26,7 @@ namespace NumbersGuess
                     isMachine = true;
                     break;
                 default:
-                    Console.WriteLine("Invalid input");
+                    Console.WriteLine("\nInvalid input");
                     goto enemyChoosingPoint;
             }
         guessChoosingPoint:
@@ -42,7 +42,7 @@ namespace NumbersGuess
                     isGuesser = false;
                     break;
                 default:
-                    Console.WriteLine("Invalid input");
+                    Console.WriteLine("\nInvalid input");
                     goto guessChoosingPoint;
             }
         playOptions:
