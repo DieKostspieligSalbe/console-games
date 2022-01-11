@@ -14,7 +14,7 @@ namespace TicTacToe
             Console.WriteLine("Welcum! There's your Tic Tac Toe field with cell numbers:");
             var tictac = new TicTacToe();
             tictac.DrawFirstTime();
-            while (!tictac.isOver)
+            while (!tictac.IsOver)
             {
                 tictac.MovesInTurns();
             }
