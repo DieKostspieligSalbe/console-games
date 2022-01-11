@@ -10,7 +10,7 @@ namespace TicTacToe
     {
         char[] Field { get; set; } = new char[9] {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
         bool WasCross { get; set; }
-        public bool isOver { get; private set; } = false;
+        public bool IsOver { get; private set; } = false;
 
         public bool Put(char sign, int cellNumber)
         {
@@ -160,13 +160,13 @@ namespace TicTacToe
                 if (diagonalWin || horizontalWin || verticalWin)
                 {
                     Console.WriteLine($"Congratulations! {sign} won!");
-                    isOver = true;
+                    IsOver = true;
                     return true;
                 }       
             }
             if (!Field.Contains(' '))
             {
-                isOver = true;
+                IsOver = true;
                 Console.WriteLine("The field is now full and it's a draw");
                 return true;
             }
