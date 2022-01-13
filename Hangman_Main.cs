@@ -33,13 +33,13 @@ namespace Hangman
                     else
                     {
                         Console.WriteLine("No, it doesn't exist there :(");
+                        counter++;
                     }
                     if (gameOver)
                     {
                         Console.WriteLine("Congratulations! You've guessed everything right");
                     }
-                    Console.WriteLine();
-                    counter++;
+                    Console.WriteLine();          
                 }
                 catch (Exception)
                 {
