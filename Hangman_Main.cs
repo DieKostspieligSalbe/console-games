@@ -32,7 +32,7 @@ namespace Hangman
                     }
                     else
                     {
-                        Console.WriteLine("No, it doesn't exist there :(");
+                        Console.WriteLine($"No, {input} doesn't exist there :(");
                         counter++;
                     }
                     if (gameOver)
