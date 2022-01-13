@@ -24,7 +24,7 @@ namespace Hangman
                 try
                 {
                     input = Console.ReadLine()[0];
-                    bool goodGuess = hang.GuessAttempt(input, out string word, out bool gameOver);
+                    bool goodGuess = hang.GuessAttempt(char.ToLower(input), out string word, out bool gameOver);
                     Console.WriteLine(word);
                     if (goodGuess)
                     {
@@ -38,6 +38,7 @@ namespace Hangman
                     {
                         Console.WriteLine("Congratulations! You've guessed everything right");
                     }
+                    Console.WriteLine();
                     counter++;
                 }
                 catch (Exception)
