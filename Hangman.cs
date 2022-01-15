@@ -7,34 +7,46 @@ using System.IO;
 
 namespace Hangman
 {
+    public delegate bool ExceptionErrorHandler(string message);
     public class Hangman
     {
         private Dictionary<int, string> wordsDict = new();
         private char[] lettersToGuess;
         private List<char> letters;
         public string Word { get; private set; }
-        public void LoadDictFromFile(string path)
+        private ExceptionErrorHandler? exceptionOnLoad;
+        public void RegisterExceptionErrorHandler(ExceptionErrorHandler method) //this is just for practice
+        {
+            exceptionOnLoad = method;
+        }
+
+        public void LoadDictFromFile(string path, out bool? success)
         {
             int counter = 0;
-            var stream = new StreamReader(path);
+            StreamReader stream = null;
             try
             {
+                stream = new StreamReader(path);
                 while (stream.ReadLine() != null)
                 {
                     wordsDict.TryAdd(counter++, stream.ReadLine());
                 }
+                success = true;
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine("File doesn't exist");
+                success = exceptionOnLoad?.Invoke("File doesn't exist");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Something went wrong when reading the file: {ex}");
+                success = exceptionOnLoad?.Invoke($"Something went wrong when reading the file: {ex}");
             }
             finally
             {
-                stream.Close();
+                if (stream != null)
+                {
+                    stream.Close();
+                }
             }
         }
         public void GetRandomWord()
