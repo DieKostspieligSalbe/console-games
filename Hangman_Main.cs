@@ -12,8 +12,14 @@ namespace Hangman
         {
             Console.WriteLine("Welcum to the game of Hangman!");
             var hang = new Hangman();
+            hang.RegisterExceptionErrorHandler(HandleOnErrorMessage); //this is just for practice
             int counter = 0;
-            hang.LoadDictFromFile("words.txt"); //this file has russian words
+            hang.LoadDictFromFile("words.txt", out bool? success); //this file has russian words
+            if (success == false || success == null)
+            {
+                Console.WriteLine("The game cannot be continued due to an error");
+                return;
+            }
             hang.GetRandomWord();
             Console.WriteLine("We chose a random word for you and decrypted it below:");
             Console.WriteLine(hang.GetCurrentState());
@@ -32,14 +38,14 @@ namespace Hangman
                     }
                     else
                     {
-                        Console.WriteLine($"No, {input} doesn't exist there :(");
+                        Console.WriteLine("No, it doesn't exist there :(");
                         counter++;
                     }
                     if (gameOver)
                     {
                         Console.WriteLine("Congratulations! You've guessed everything right");
                     }
-                    Console.WriteLine();          
+                    Console.WriteLine();              
                 }
                 catch (Exception)
                 {
@@ -72,6 +78,11 @@ namespace Hangman
                     PlayAgain();
                     return false;
             }
+        }
+        public static bool HandleOnErrorMessage(string message)
+        {      
+            Console.WriteLine(message);
+            return false;
         }
     }
 }
