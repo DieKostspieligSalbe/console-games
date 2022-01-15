@@ -46,7 +46,10 @@ namespace Hangman
                         Console.WriteLine("Congratulations! You've guessed everything right");
                         break;
                     }
-                    Console.WriteLine($"Already used letters: {usedLetters}");
+                    Console.Write($"Already used letters: ");
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write(usedLetters);
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine();
                 }
                 catch (Exception)
