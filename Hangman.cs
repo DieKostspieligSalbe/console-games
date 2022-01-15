@@ -13,6 +13,7 @@ namespace Hangman
         private Dictionary<int, string> wordsDict = new();
         private char[] lettersToGuess;
         private List<char> letters;
+        private string usedLetters;
         public string Word { get; private set; }
         private ExceptionErrorHandler? exceptionOnLoad;
         public void RegisterExceptionErrorHandler(ExceptionErrorHandler method) //this is just for practice
@@ -56,7 +57,7 @@ namespace Hangman
             letters = Word.ToList();
             lettersToGuess = Word.ToCharArray();
         }
-        public bool GuessAttempt(char ch, out string word, out bool gameOver)
+        public bool GuessAttempt(char ch, out string word, out string usedLetters, out bool gameOver)
         {
             bool rightGuess = false;
             if (letters.Contains(ch))
@@ -65,6 +66,7 @@ namespace Hangman
                 rightGuess = true;
             }
             word = GetCurrentState();
+            usedLetters = GetUsedLetters(ch);
             gameOver = VictoryCheck();
             return rightGuess;
         }
@@ -78,6 +80,10 @@ namespace Hangman
                 str.Append(placeholder);
             }
             return str.ToString();
+        }
+        private string GetUsedLetters(char ch)
+        {
+            return usedLetters += ch + " ";
         }
 
         private bool VictoryCheck()
