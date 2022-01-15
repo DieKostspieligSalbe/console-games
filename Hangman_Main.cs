@@ -2,7 +2,7 @@
 
 namespace Hangman
 {
-    internal class Program
+    internal class Hangman_Main
     {
         static void Main(string[] args)
         {
@@ -34,7 +34,7 @@ namespace Hangman
                     Console.WriteLine(word);
                     if (goodGuess)
                     {
-                        Console.WriteLine("Nice, you guessed a letter right!");
+                        Console.WriteLine("Nice, you've guessed a letter right!");
                     }
                     else
                     {
@@ -44,6 +44,7 @@ namespace Hangman
                     if (gameOver)
                     {
                         Console.WriteLine("Congratulations! You've guessed everything right");
+                        break;
                     }
                     Console.WriteLine($"Already used letters: {usedLetters}");
                     Console.WriteLine();
