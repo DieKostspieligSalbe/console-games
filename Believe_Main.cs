@@ -21,14 +21,9 @@ namespace BelieveOrNot
             while (attemptCounter < 3)
             {
                 Thesis thesis = ThesisPicker(ref thesisList);
-                bool answerCorrect = ThesisDialogue(thesis);
-                if (!answerCorrect)
-                {
-                    attemptCounter++;
-                }
+                ThesisDialogue(thesis);
                 PlayAgain(filePath);
             }
-
         }
 
         static List<Thesis> FileRead(string filePath)
@@ -43,7 +38,7 @@ namespace BelieveOrNot
             thesisList.Remove(pickedThesis);
             return pickedThesis;
         }
-        static bool ThesisDialogue(Thesis thesis)
+        static void ThesisDialogue(Thesis thesis)
         {
             ThesisResult answer = ThesisResult.No;
             bool validAnswer = false;
@@ -69,20 +64,17 @@ namespace BelieveOrNot
             if (!validAnswer)
             {
                 ThesisDialogue(thesis);
-                return false;
             }
             else
             {
                 if (answer == thesis.Answer)
                 {
                     Console.WriteLine("\nYou're right!");
-                    return true;
                 }
                 else
                 {
                     Console.WriteLine("\nNo, you're wrong!");
                     Console.WriteLine(thesis.Comment);
-                    return false;
                 }
             }
         }
